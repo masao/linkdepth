@@ -6,10 +6,10 @@ require "rexml/document"
 
 def load_file( file )
    begin
-      file = open(file) unless file.respond_to? :read
-      doc = REXML::Document.new( file )
-      next unless doc or doc.root.name == "行動プロトコル"
-      start, finish = nil
+      fileio = file.respond_to?(:read) ? file : open(file)
+      doc = REXML::Document.new( fileio )
+      raise REXML::ParseException.new("document not found in #{file}") if doc.nil? or doc.root.nil?
+      raise ArgumentError.new("document root is not '行動プロトコル'") if not doc.root.name == "行動プロトコル"
       tables = doc.elements.to_a("/行動プロトコル/行動プロトコルテーブル")
       tables = tables.sort_by do |table|
          table.elements["./Position"].text.to_f
