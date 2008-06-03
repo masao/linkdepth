@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 # $Id$
 
 require "rexml/document"
 
 def load_file( file )
    begin
-      doc = REXML::Document.new(open(file))
+      file = open(file) unless file.respond_to? :read
+      doc = REXML::Document.new( file )
       next unless doc or doc.root.name == "行動プロトコル"
       start, finish = nil
       tables = doc.elements.to_a("/行動プロトコル/行動プロトコルテーブル")
