@@ -58,6 +58,8 @@ table.each_with_index do |e, i|
          else
             next
          end
+      else
+         link_depth.sub!(/\s*\(.*\)\s*$/, "")
       end
    end
    puts [ e.elements["./Position"].text.to_f,
