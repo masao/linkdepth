@@ -15,8 +15,8 @@ for f in "$@"; do
     echo "set ytics 60" >> search
     echo "plot \
         \"${basename}.txt\" using 2:1 title \"$basename\" w linespoint, \
-	\"${basename}.search.txt\" using 2:1 title \"search\" w point pt 7, \
-	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 8 \
+	\"${basename}.search.txt\" using 2:1 title \"search\" w point pt 12, \
+	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 12 \
      " >> search
     # echo "set multiplot" >> search
     gnuplot search > $basename.png
