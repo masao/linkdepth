@@ -6,6 +6,11 @@ for f in "$@"; do
     ./ext-linkdepth.rb $f > $basename.txt
     ./ext-bookmark.rb $f > $basename.bookmark.txt
     ./ext-submit.rb $f > $basename.submit.txt
+    if [ -s $basename.submit.txt ]; then 
+	submitplot=", \"${basename}.submit.txt\" using 2:1 title \"submit\" w point pt 7"
+    else
+        submitplot=""
+    fi
     ./ext-search.rb $f $basename > search
     echo "set term png size 800,800" >> search
     echo "set size square" >> search
@@ -20,8 +25,8 @@ for f in "$@"; do
     echo "plot \
         \"${basename}.txt\" using 2:1 title \"$basename\" w linespoint, \
 	\"${basename}.search.txt\" using 2:1 title \"search\" w point pt 7, \
-	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 8, \
-	\"${basename}.submit.txt\" using 2:1 title \"submit\" w point pt 7 \
+	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 8 \
+	$submitplot
      " >> search
     # echo "set multiplot" >> search
     gnuplot search > $basename.png
