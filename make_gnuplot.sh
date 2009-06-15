@@ -12,7 +12,7 @@ for f in "$@"; do
         submitplot=""
     fi
     ./ext-search.rb $f $basename > search
-    echo "set term png size 800,800 font /usr/share/fonts/ja/TrueType/tlgothic.ttc 16" >> search
+    echo "set term png size 800,800 font \"/usr/share/fonts/ja/TrueType/tlgothic.ttc\" 16" >> search
     echo "set xtics font \"/usr/share/fonts/ja/TrueType/tlgothic.ttc,16\"" >> search
     echo "set x2tics font \"/usr/share/fonts/ja/TrueType/tlgothic.ttc,16\"" >> search
     echo "set ytics font \"/usr/share/fonts/ja/TrueType/tlgothic.ttc,16\"" >> search
