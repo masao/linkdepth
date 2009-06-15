@@ -27,7 +27,7 @@ for f in "$@"; do
     echo "set ytics 60" >> search
     echo "set pointsize 2.0" >> search
     echo "plot \
-        \"${basename}.txt\" using 2:1 title \"$basename\" w linespoint lw 3, \
+        \"${basename}.txt\" using 2:1 title \"$basename\" w steps lw 3, \
 	\"${basename}.search.txt\" using 2:1 title \"search\" w point pt 7, \
 	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 8 \
 	$submitplot
