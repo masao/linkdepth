@@ -7,7 +7,7 @@ for f in "$@"; do
     ./ext-bookmark.rb $f > $basename.bookmark.txt
     ./ext-submit.rb $f > $basename.submit.txt
     if [ -s $basename.submit.txt ]; then 
-	submitplot=", \"${basename}.submit.txt\" using 2:1 title \"submit\" w point pt 7"
+	submitplot=", \"${basename}.submit.txt\" using 2:1 title \"submit\" w point pt 5"
     else
         submitplot=""
     fi
@@ -29,7 +29,7 @@ for f in "$@"; do
     echo "plot \
         \"${basename}.txt\" using 2:1 title \"$basename\" w steps lw 3, \
 	\"${basename}.search.txt\" using 2:1 title \"search\" w point pt 7, \
-	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 8 \
+	\"${basename}.bookmark.txt\" using 2:1 title \"bookmark\" w point pt 9 \
 	$submitplot
      " >> search
     # echo "set multiplot" >> search
