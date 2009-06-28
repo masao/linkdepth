@@ -15,7 +15,12 @@ t.select{|e|
 }.each_with_index do |e, i|
    y_axis = -5.5
    # y_axis = -1.9 if i % 2 == 1
-   puts %Q[set label "#{ e.elements["./行動_詳細2"].text.toeuc }" at #{y_axis},#{ e.elements["./Position"].text } font "/usr/share/fonts/ja/TrueType/tlgothic.ttc,8"]
+   query = e.elements["./行動_詳細2"].text.toeuc
+   fontsize = 14
+   fontsize = 12 if query.size > 16
+   fontsize = 10 if query.size > 20
+   fontsize = 8 if query.size > 24
+   puts %Q[set label "#{ e.elements["./行動_詳細2"].text.toeuc }" at #{y_axis},#{ e.elements["./Position"].text } font "/usr/share/fonts/ja/TrueType/tlgothic.ttc,#{fontsize}"]
    search_dat.puts [ e.elements["./Position"].text,
                      -0.5
                    ].join("\t")
